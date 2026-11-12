@@ -5,7 +5,7 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>KrishiMart – Agriculture Shop Manager</title>
+<title>HK Mart – Agriculture Shop Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f3f5f2;--card:#fff;--ink:#1c2a1f;--mut:#69776c;--line:#e1e7e0;--pri:#1f4d2b;--pri2:#2d6a3e;--acc:#6bbf59;--accbg:#e6f4e1;--warn:#b7791f;--warnbg:#fdf3dc;--bad:#b42318;--badbg:#fde8e6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -63,7 +63,7 @@ td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}tr:la
 </style></head><body>
 <div id="root"></div><div id="m"><div class="mb" id="mb"></div></div><div id="toast"></div>
 <script>
-const $=s=>document.querySelector(s),TODAY=new Date().toISOString().slice(0,10),KEY='krishimart_v1';
+const $=s=>document.querySelector(s),TODAY=new Date().toISOString().slice(0,10),KEY='HK Mart_v1';
 const fmt=n=>'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2});
 const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -135,11 +135,11 @@ function makeSale({lines,cid,disc,mode,paid,date,demo}){
  }catch(e){db=JSON.parse(snap);throw e}}
 /* ---------- shell ---------- */
 function render(){
- if(!user){$('#root').innerHTML=`<div class="login"><div class="card"><div class="brand" style="display:flex;gap:10px;align-items:center;font-weight:700;font-size:20px;margin-bottom:6px"><div class="logo">🌿</div>KrishiMart</div>
+ if(!user){$('#root').innerHTML=`<div class="login"><div class="card"><div class="brand" style="display:flex;gap:10px;align-items:center;font-weight:700;font-size:20px;margin-bottom:6px"><div class="logo">🌿</div>HK Mart</div>
  <p class="sub">Sign in to manage billing, stock and customers.</p><div class="f"><div class="full"><label>Role</label><select id="lr">${Object.keys(ROLES).map(r=>`<option>${r}</option>`)}</select></div><div class="full"><label>Password</label><input id="lp" type="password" value="demo"></div></div>
  <button class="btn" onclick="login()">Sign in</button><p class="sub" style="margin-top:12px;font-size:12.5px">Demo build: any role, password “demo”.</p></div></div>`;return}
  const allowed=ROLES[user];if(!allowed.includes(page))page=allowed[0];
- $('#root').innerHTML=`<div class="app"><aside id="sb"><div class="brand"><div class="logo">🌿</div>KrishiMart</div>${allowed.map(k=>`<a class="${k===page?'on':''}" onclick="go('${k}')">${NAV[k][0]} ${NAV[k][1]}</a>`).join('')}</aside>
+ $('#root').innerHTML=`<div class="app"><aside id="sb"><div class="brand"><div class="logo">🌿</div>HK Mart</div>${allowed.map(k=>`<a class="${k===page?'on':''}" onclick="go('${k}')">${NAV[k][0]} ${NAV[k][1]}</a>`).join('')}</aside>
  <main><div class="top"><button class="btn o s menu" onclick="$('#sb').classList.toggle('open')">☰</button><input id="gs" placeholder="Search products or invoices…" onkeydown="if(event.key==='Enter')gsearch(this.value)"><span class="sp"></span><span class="pill">${esc(user)}</span><button class="btn o s" onclick="document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark'">Theme</button><button class="btn o s" onclick="user=null;render()">Log out</button></div>
  <div class="demo">Demo records are labelled DEMO. Data is stored in this browser only.</div><div class="wrap" id="pg"></div></main></div>`;
  ({dashboard,pos:posPage,products,inventory,customers,invoices})[page]();}
@@ -218,7 +218,7 @@ function invoices(q=''){
  $('#pg').innerHTML=`<h1>Invoices</h1><p class="sub">Search by invoice number or customer.</p><div class="bar"><input id="iq" placeholder="Search invoices" value="${esc(q)}" oninput="invoices(this.value)"></div><div class="card tw"><table><thead><tr><th>Invoice</th><th>Date</th><th>Customer</th><th>Total</th><th>Paid</th><th>Due</th><th>Mode</th><th></th></tr></thead><tbody>${[...db.sales].reverse().filter(s=>(s.no+(cOf(s.cid)?.name||'walk-in')).toLowerCase().includes(q.toLowerCase())).slice(0,60).map(s=>`<tr><td>${s.no} ${s.demo?'<span class="tag w">DEMO</span>':''}</td><td>${s.date}</td><td>${esc(cOf(s.cid)?.name||'Walk-in')}</td><td>${fmt(s.total)}</td><td>${fmt(s.paid)}</td><td>${s.total-s.paid?`<span class="tag w">${fmt(s.total-s.paid)}</span>`:'–'}</td><td>${s.mode}</td><td><button class="btn o s" onclick="invoiceView('${s.no}')">View / print</button></td></tr>`).join('')}</tbody></table></div>`;
  if(q){const e=$('#iq');e.focus();e.setSelectionRange(q.length,q.length)}}
 function invoiceView(no){const s=db.sales.find(x=>x.no===no),c=cOf(s.cid);
- modal(`<div style="text-align:center"><b style="font-size:18px">KrishiMart Agro Centre</b><br><small>Main Road, Salem, Tamil Nadu · GSTIN: 33XXXXX0000X1Z5 (set in settings)</small><br><b>Tax invoice</b></div>
+ modal(`<div style="text-align:center"><b style="font-size:18px">HK Mart Agro Centre</b><br><small>Main Road, Salem, Tamil Nadu · GSTIN: 33XXXXX0000X1Z5 (set in settings)</small><br><b>Tax invoice</b></div>
  <div class="row"><span>${s.no}</span><span>${s.date}</span></div><div>Customer: ${esc(c?c.name+', '+c.village:'Walk-in customer')}</div>
  <div class="tw"><table><thead><tr><th>Item</th><th>HSN</th><th>Batch</th><th>Qty</th><th>Rate</th><th>GST</th><th>Amount</th></tr></thead><tbody>${s.items.map(i=>`<tr><td>${esc(i.name)}</td><td>${i.hsn}</td><td>${i.batch}</td><td>${i.qty}</td><td>${fmt(i.rate)}</td><td>${i.gst}%</td><td>${fmt(i.qty*i.rate)}</td></tr>`).join('')}</tbody></table></div>
  <div class="row"><span>Subtotal</span><span>${fmt(s.sub)}</span></div><div class="row"><span>Discount (${s.disc}%)</span><span>−${fmt(s.dAmt)}</span></div><div class="row"><span>Taxable value</span><span>${fmt(s.taxable)}</span></div><div class="row"><span>CGST + SGST</span><span>${fmt(s.tax/2)} + ${fmt(s.tax/2)}</span></div><div class="row t"><span>Grand total</span><span>${fmt(s.total)}</span></div>
