@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KrishiMart – Agriculture Shop Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f5f2;--card:#fff;--ink:#1c2a1f;--mut:#69776c;--line:#e1e7e0;--pri:#1f4d2b;--pri2:#2d6a3e;--acc:#6bbf59;--accbg:#e6f4e1;--warn:#b7791f;--warnbg:#fdf3dc;--bad:#b42318;--badbg:#fde8e6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a14;--card:#1a251d;--ink:#e6efe7;--mut:#93a496;--line:#2b3a2f;--pri:#3d8a52;--pri2:#4aa062;--accbg:#223a26;--warnbg:#3a301a;--badbg:#3d1f1c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121a14;--card:#1a251d;--ink:#e6efe7;--mut:#93a496;--line:#2b3a2f;--pri:#3d8a52;--pri2:#4aa062;--accbg:#223a26;--warnbg:#3a301a;--badbg:#3d1f1c;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Figtree,system-ui,sans-serif}
+button,input,select{font:inherit;color:inherit}
+.app{display:flex;min-height:100vh}
+aside{width:228px;background:var(--pri);color:#fff;padding:16px 10px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow:auto}
+aside .brand{display:flex;gap:10px;align-items:center;padding:4px 8px 18px;font-weight:700;font-size:17px}
+.logo{width:34px;height:34px;border-radius:10px;background:var(--acc);display:grid;place-items:center;color:#123;font-size:18px}
+aside a{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:9px;color:#dcebdc;cursor:pointer;margin-bottom:2px}
+aside a:hover{background:rgba(255,255,255,.1)}aside a.on{background:#fff;color:var(--pri);font-weight:600}
+main{flex:1;min-width:0}
+.top{display:flex;gap:12px;align-items:center;padding:12px 22px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.top input{flex:1;max-width:380px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--bg)}
+.top .sp{flex:1}.pill{padding:4px 10px;border-radius:99px;background:var(--accbg);color:var(--pri2);font-weight:600;font-size:12px}
+.wrap{padding:22px;max-width:1280px}
+h1{font-size:22px;margin:0 0 4px}.sub{color:var(--mut);margin:0 0 18px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr));margin-top:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.kpi b{display:block;font-size:22px;margin-top:4px}.kpi span{color:var(--mut);font-size:13px}
+.kpi.w{border-left:4px solid var(--warn)}.kpi.b{border-left:4px solid var(--bad)}.kpi.g{border-left:4px solid var(--acc)}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse}
+th{text-align:left;color:var(--mut);font-weight:600;font-size:12.5px;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}tr:last-child td{border:0}
+.btn{padding:9px 14px;border:0;border-radius:9px;background:var(--pri);color:#fff;font-weight:600;cursor:pointer}
+.btn:hover{background:var(--pri2)}.btn.o{background:transparent;color:var(--pri2);border:1px solid var(--line)}.btn.s{padding:5px 10px;font-size:12.5px}
+.tag{padding:2px 9px;border-radius:99px;font-size:12px;font-weight:600;background:var(--accbg);color:var(--pri2)}
+.tag.w{background:var(--warnbg);color:var(--warn)}.tag.b{background:var(--badbg);color:var(--bad)}
+.bar{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.bar input,.bar select,.f input,.f select{padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--card);width:100%}
+.bar input,.bar select{width:auto;min-width:160px}
+.pos{display:grid;grid-template-columns:1fr 380px;gap:14px}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;max-height:62vh;overflow:auto;margin-top:12px}
+.it{border:1px solid var(--line);border-radius:10px;padding:10px;cursor:pointer;background:var(--card)}
+.it:hover{border-color:var(--acc)}.it.x{opacity:.45;pointer-events:none}.it b{display:block;font-size:13px}.it small{color:var(--mut)}
+.row{display:flex;justify-content:space-between;gap:8px;padding:4px 0}.row.t{font-size:18px;font-weight:700;border-top:1px solid var(--line);margin-top:6px;padding-top:10px}
+.q{width:54px!important;padding:4px 6px!important;text-align:center}
+#m{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;place-items:center;z-index:20;padding:14px}
+#m.on{display:grid}.mb{background:var(--card);border-radius:14px;padding:22px;max-width:640px;width:100%;max-height:90vh;overflow:auto}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:10px}.f label{font-size:12.5px;color:var(--mut);display:block}.f .full{grid-column:1/-1}
+.login{min-height:100vh;display:grid;place-items:center;background:linear-gradient(160deg,var(--pri),#0f2a17);padding:16px}
+.login .card{max-width:380px;width:100%;padding:28px}
+.login button{width:100%;margin-top:8px}
+.hb{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:13px}.hb i{display:block;height:10px;background:var(--acc);border-radius:5px}.hb span{width:110px;color:var(--mut)}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--pri);color:#fff;padding:10px 18px;border-radius:10px;display:none;z-index:30}
+.demo{background:var(--warnbg);color:var(--warn);padding:6px 22px;font-size:12.5px;font-weight:600}
+.menu{display:none}
+@media(max-width:860px){aside{position:fixed;left:-240px;z-index:15;transition:left .2s}aside.open{left:0}.menu{display:inline-block}.pos{grid-template-columns:1fr}.wrap{padding:14px}}
+@media print{body *{visibility:hidden}.mb,.mb *{visibility:visible}#m{position:static;background:none}.mb{position:absolute;left:0;top:0;max-width:none;box-shadow:none}.np{display:none!important}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div id="root"></div><div id="m"><div class="mb" id="mb"></div></div><div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s),TODAY=new Date().toISOString().slice(0,10),KEY='krishimart_v1';
+const fmt=n=>'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2});
+const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let db,user=null,page='dashboard',cart=[],pos={q:'',cid:'',disc:0,mode:'Cash',paid:''};
+const ROLES={'Owner':['dashboard','pos','products','inventory','customers','invoices'],'Store Manager':['dashboard','pos','products','inventory','customers','invoices'],'Cashier':['pos','customers','invoices'],'Inventory Manager':['products','inventory'],'Accountant':['dashboard','customers','invoices']};
+const NAV={dashboard:['▦','Dashboard'],pos:['🧾','POS billing'],products:['🌱','Products'],inventory:['📦','Inventory & batches'],customers:['👨‍🌾','Customers'],invoices:['📄','Invoices']};
+function save(){try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){}}
+function load(){try{const s=localStorage.getItem(KEY);if(s){db=JSON.parse(s);return}}catch(e){}seed();}
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2400)}
+function modal(h){$('#mb').innerHTML=h;$('#m').classList.add('on')}function closeM(){$('#m').classList.remove('on')}
+$('#m').onclick=e=>{if(e.target.id==='m')closeM()};
+/* ---------- seed demo data ---------- */
+function seed(){
+ const P=`Chlorpyrifos 20% EC|Insecticide|Dhanuka|1 L|380|480|18|3808|20
+Imidacloprid 17.8% SL|Insecticide|Bayer|250 ml|210|290|18|3808|15
+Mancozeb 75% WP|Fungicide|Indofil|500 g|260|340|18|3808|15
+Carbendazim 50% WP|Fungicide|Crystal|250 g|150|210|18|3808|12
+Glyphosate 41% SL|Herbicide|Monsanto|1 L|420|540|18|3808|10
+2,4-D Amine Salt|Herbicide|UPL|500 ml|180|250|18|3808|10
+Urea 46% N|Fertilizer|IFFCO|45 kg|266|300|5|3102|40
+DAP 18:46:0|Fertilizer|IFFCO|50 kg|1250|1350|5|3105|30
+NPK 19:19:19|Fertilizer|Coromandel|1 kg|120|165|5|3105|25
+Vermicompost|Organic|GreenGold|5 kg|90|140|0|3101|20
+Neem Cake|Organic|GreenGold|10 kg|260|340|0|3101|12
+Zinc Sulphate 21%|Micronutrient|Coromandel|1 kg|95|135|5|2833|20
+Hybrid Tomato Seeds|Seeds|Syngenta|10 g|180|240|0|1209|15
+Paddy Seed ADT-45|Seeds|TNAU|5 kg|260|330|0|1006|25
+Knapsack Sprayer 16 L|Equipment|Neptune|1 pc|1450|1850|18|8424|4
+Seaweed Growth Promoter|Promoter|Dhanuka|500 ml|240|330|18|3808|10`.split('\n');
+ db={products:[],batches:[],customers:[],sales:[],ledger:[],txns:[],seq:0,pid:0,bid:0,cid:0};
+ P.forEach((r,i)=>{const [name,cat,brand,unit,cost,price,gst,hsn,min]=r.split('|');const id=++db.pid;
+  db.products.push({id,name,sku:'KM-'+String(1000+id),cat,brand,unit,cost:+cost,price:+price,gst:+gst,hsn,min:+min,active:true,demo:true});
+  const nr=cat==='Equipment'||cat==='Fertilizer';
+  const exp=i===3?addD(TODAY,-20):i===1?addD(TODAY,35):i===5?addD(TODAY,50):addD(TODAY,nr?700:300+i*20);
+  const qty=i===4?6:i===8?9:60+i*3;
+  db.batches.push({id:++db.bid,pid:id,no:'B'+(2600+id),exp,qty,cost:+cost,blocked:false});
+  db.txns.push({date:addD(TODAY,-30),pid:id,bid:db.bid,type:'Opening/Inward',qty,ref:'DEMO'});});
+ ['Ramasamy|98421 10001|Omalur','Muthu Kumar|98421 10002|Attur','Lakshmi Devi|98421 10003|Edappadi','Senthil Nathan|98421 10004|Mettur','Palanisamy|98421 10005|Omalur','Kavitha|98421 10006|Sankari','Arumugam|98421 10007|Attur','Gopal|98421 10008|Salem'].forEach(r=>{const [name,mobile,village]=r.split('|');db.customers.push({id:++db.cid,name,mobile,village,limit:20000,type:'Farmer',demo:true})});
+ let s=7;const rnd=()=>(s=(s*9301+49297)%233280)/233280;
+ for(let d=13;d>=0;d--)for(let k=0;k<2+Math.floor(rnd()*3);k++){
+  const lines=[];for(let j=0;j<1+Math.floor(rnd()*3);j++){const p=db.products[Math.floor(rnd()*db.products.length)];if(p.id!==4&&p.id!==5)lines.push({pid:p.id,qty:1+Math.floor(rnd()*3)})}
+  if(!lines.length)continue;const mode=['Cash','UPI','Card','Credit'][Math.floor(rnd()*4)];
+  const cid=mode==='Credit'?1+Math.floor(rnd()*8):(rnd()>.5?1+Math.floor(rnd()*8):'');
+  try{makeSale({lines,cid,disc:0,mode,paid:mode==='Credit'?0:null,date:addD(TODAY,-d),demo:true})}catch(e){}}
+ save();}
+/* ---------- core logic ---------- */
+const valid=b=>!b.blocked&&b.exp>=TODAY&&b.qty>0;
+const stock=pid=>db.batches.filter(b=>b.pid===pid&&valid(b)).reduce((a,b)=>a+b.qty,0);
+const pOf=id=>db.products.find(p=>p.id===id),cOf=id=>db.customers.find(c=>c.id==id);
+const owes=cid=>db.ledger.filter(l=>l.cid==cid).reduce((a,l)=>a+l.dr-l.cr,0);
+function makeSale({lines,cid,disc,mode,paid,date,demo}){
+ const snap=JSON.stringify(db);
+ try{
+  const items=[];let sub=0;
+  for(const l of lines){const p=pOf(l.pid);let need=l.qty;
+   const bs=db.batches.filter(b=>b.pid===l.pid&&valid(b)).sort((a,b)=>a.exp<b.exp?-1:1);
+   if(bs.reduce((a,b)=>a+b.qty,0)<need)throw new Error('Not enough sellable stock for '+p.name);
+   for(const b of bs){if(!need)break;const t=Math.min(b.qty,need);b.qty-=t;need-=t;
+    items.push({pid:p.id,name:p.name,sku:p.sku,hsn:p.hsn,batch:b.no,qty:t,rate:p.price,gst:p.gst,cost:b.cost});sub+=t*p.price;
+    db.txns.push({date:date||TODAY,pid:p.id,bid:b.id,type:'Sale',qty:-t,ref:'INV-'+(db.seq+1)})}}
+  const dAmt=sub*disc/100,taxable=sub-dAmt;let tax=0;items.forEach(i=>{i.tx=i.qty*i.rate*(1-disc/100)*i.gst/100;tax+=i.tx});
+  const total=Math.round(taxable+tax);const pd=paid===null||paid===''||paid===undefined?total:Math.min(+paid,total);
+  if(pd<total){if(!cid)throw new Error('Select a customer for credit or partial payment');
+   if(owes(cid)+total-pd>cOf(cid).limit)throw new Error('Credit limit exceeded for '+cOf(cid).name)}
+  const no='INV-2627-'+String(++db.seq).padStart(4,'0');
+  const sale={no,date:date||TODAY,cid,items,disc,sub,dAmt,taxable,tax,total,paid:pd,mode,demo:!!demo};db.sales.push(sale);
+  if(cid){db.ledger.push({cid,date:sale.date,ref:no,note:'Sale',dr:total,cr:0});if(pd>0)db.ledger.push({cid,date:sale.date,ref:no,note:'Payment ('+mode+')',dr:0,cr:pd})}
+  save();return sale;
+ }catch(e){db=JSON.parse(snap);throw e}}
+/* ---------- shell ---------- */
+function render(){
+ if(!user){$('#root').innerHTML=`<div class="login"><div class="card"><div class="brand" style="display:flex;gap:10px;align-items:center;font-weight:700;font-size:20px;margin-bottom:6px"><div class="logo">🌿</div>KrishiMart</div>
+ <p class="sub">Sign in to manage billing, stock and customers.</p><div class="f"><div class="full"><label>Role</label><select id="lr">${Object.keys(ROLES).map(r=>`<option>${r}</option>`)}</select></div><div class="full"><label>Password</label><input id="lp" type="password" value="demo"></div></div>
+ <button class="btn" onclick="login()">Sign in</button><p class="sub" style="margin-top:12px;font-size:12.5px">Demo build: any role, password “demo”.</p></div></div>`;return}
+ const allowed=ROLES[user];if(!allowed.includes(page))page=allowed[0];
+ $('#root').innerHTML=`<div class="app"><aside id="sb"><div class="brand"><div class="logo">🌿</div>KrishiMart</div>${allowed.map(k=>`<a class="${k===page?'on':''}" onclick="go('${k}')">${NAV[k][0]} ${NAV[k][1]}</a>`).join('')}</aside>
+ <main><div class="top"><button class="btn o s menu" onclick="$('#sb').classList.toggle('open')">☰</button><input id="gs" placeholder="Search products or invoices…" onkeydown="if(event.key==='Enter')gsearch(this.value)"><span class="sp"></span><span class="pill">${esc(user)}</span><button class="btn o s" onclick="document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark'">Theme</button><button class="btn o s" onclick="user=null;render()">Log out</button></div>
+ <div class="demo">Demo records are labelled DEMO. Data is stored in this browser only.</div><div class="wrap" id="pg"></div></main></div>`;
+ ({dashboard,pos:posPage,products,inventory,customers,invoices})[page]();}
+function login(){user=$('#lr').value;page=ROLES[user][0];render()}
+function go(p){page=p;render()}
+function gsearch(v){if(!v)return;if(/^inv/i.test(v)){page='invoices';render();$('#iq').value=v;invoices(v)}else{page='products';render();$('#pq').value=v;products(v)}}
+/* ---------- dashboard ---------- */
+function dashboard(){
+ const sum=a=>a.reduce((x,s)=>x+s.total,0),on=d=>db.sales.filter(s=>s.date===d),mo=db.sales.filter(s=>s.date.slice(0,7)===TODAY.slice(0,7));
+ const gp=db.sales.reduce((a,s)=>a+s.items.reduce((x,i)=>x+i.qty*i.rate*(1-s.disc/100)-i.qty*i.cost,0),0);
+ const low=db.products.filter(p=>stock(p.id)<=p.min).length,ne=db.batches.filter(b=>b.qty>0&&b.exp>=TODAY&&b.exp<=addD(TODAY,60)).length,ex=db.batches.filter(b=>b.qty>0&&b.exp<TODAY).length;
+ const pend=db.customers.reduce((a,c)=>a+Math.max(0,owes(c.id)),0);
+ const K=(l,v,c='')=>`<div class="card kpi ${c}"><span>${l}</span><b>${v}</b></div>`;
+ const days=[...Array(7)].map((_,i)=>addD(TODAY,i-6)),vals=days.map(d=>sum(on(d))),mx=Math.max(...vals,1);
+ const cat={};db.sales.forEach(s=>s.items.forEach(i=>{const c=pOf(i.pid).cat;cat[c]=(cat[c]||0)+i.qty*i.rate}));const cm=Math.max(...Object.values(cat),1);
+ const pm={};db.sales.forEach(s=>pm[s.mode]=(pm[s.mode]||0)+s.total);const pmx=Math.max(...Object.values(pm),1);
+ const tp={};db.sales.forEach(s=>s.items.forEach(i=>tp[i.name]=(tp[i.name]||0)+i.qty));const top=Object.entries(tp).sort((a,b)=>b[1]-a[1]).slice(0,5);
+ $('#pg').innerHTML=`<h1>Dashboard</h1><p class="sub">Live figures from your sales and stock records.</p>
+ <div class="grid">${K('Today’s sales',fmt(sum(on(TODAY))),'g')}${K('Yesterday',fmt(sum(on(addD(TODAY,-1)))))}${K('Month revenue',fmt(sum(mo)))}${K('Gross profit (batch cost)',fmt(gp),'g')}${K('Low-stock products',low,low?'w':'')}${K('Near expiry (60 days)',ne,ne?'w':'')}${K('Expired batches',ex,ex?'b':'')}${K('Customer dues',fmt(pend),pend?'w':'')}${K('Products',db.products.length)}${K('Customers',db.customers.length)}</div>
+ <div class="grid g2"><div class="card"><b>Sales, last 7 days</b><svg viewBox="0 0 320 140" style="width:100%;margin-top:8px">${vals.map((v,i)=>`<rect x="${i*45+8}" y="${120-v/mx*100}" width="30" height="${v/mx*100}" rx="5" fill="var(--acc)"/><text x="${i*45+23}" y="136" font-size="10" text-anchor="middle" fill="var(--mut)">${days[i].slice(8)}</text>`).join('')}</svg></div>
+ <div class="card"><b>Category-wise sales</b>${Object.entries(cat).map(([k,v])=>`<div class="hb"><span>${k}</span><i style="width:${v/cm*55}%"></i>${fmt(v)}</div>`).join('')}</div>
+ <div class="card"><b>Payment methods</b>${Object.entries(pm).map(([k,v])=>`<div class="hb"><span>${k}</span><i style="width:${v/pmx*55}%"></i>${fmt(v)}</div>`).join('')}</div>
+ <div class="card"><b>Top-selling products</b>${top.map(([k,v])=>`<div class="row"><span>${esc(k)}</span><b>${v} sold</b></div>`).join('')}</div></div>`;}
+/* ---------- POS ---------- */
+function posPage(){
+ $('#pg').innerHTML=`<h1>POS billing</h1><p class="sub">Search by name, SKU or scan a barcode, then tap a product to add it.</p><div class="pos"><div class="card"><input id="pq" placeholder="Search name or SKU, or scan barcode + Enter" value="${esc(pos.q)}" style="width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:var(--bg)" oninput="pos.q=this.value;posList()" onkeydown="if(event.key==='Enter')posEnter()"><div class="items" id="pl"></div></div><div class="card" id="cartc"></div></div>`;posList();cartR();}
+function posList(){const q=pos.q.toLowerCase();$('#pl').innerHTML=db.products.filter(p=>p.active&&(p.name+p.sku).toLowerCase().includes(q)).map(p=>{const s=stock(p.id);return `<div class="it ${s?'':'x'}" onclick="addC(${p.id})"><b>${esc(p.name)}</b><small>${p.unit} · ${p.sku}</small><div class="row"><span>${fmt(p.price)}</span><span class="tag ${s>p.min?'':s?'w':'b'}">${s?s+' left':'No stock'}</span></div></div>`}).join('')||'<p class="sub">No matching product.</p>'}
+function posEnter(){const q=pos.q.toLowerCase(),m=db.products.filter(p=>p.sku.toLowerCase()===q||(p.barcode||'')===pos.q);if(m.length){addC(m[0].id);pos.q='';$('#pq').value='';posList()}}
+function addC(id){const l=cart.find(c=>c.pid===id);const s=stock(id);if(!s)return toast('No sellable stock (expired, blocked or empty)');if(l){if(l.qty<s)l.qty++;else toast('Only '+s+' in stock')}else cart.push({pid:id,qty:1});cartR()}
+function calc(){const sub=cart.reduce((a,c)=>a+c.qty*pOf(c.pid).price,0),f=1-pos.disc/100;const tax=cart.reduce((a,c)=>a+c.qty*pOf(c.pid).price*f*pOf(c.pid).gst/100,0);return{sub,d:sub*pos.disc/100,tax,total:Math.round(sub*f+tax)}}
+function cartR(){const t=calc();$('#cartc').innerHTML=`<b>Current bill</b><div class="tw"><table>${cart.map((c,i)=>`<tr><td>${esc(pOf(c.pid).name)}<br><small style="color:var(--mut)">${fmt(pOf(c.pid).price)} · GST ${pOf(c.pid).gst}%</small></td><td><input class="q" type="number" min="1" value="${c.qty}" onchange="cart[${i}].qty=Math.max(1,Math.min(stock(cart[${i}].pid),+this.value||1));cartR()"></td><td>${fmt(c.qty*pOf(c.pid).price)}</td><td><button class="btn o s" onclick="cart.splice(${i},1);cartR()">✕</button></td></tr>`).join('')||'<tr><td>Cart is empty.</td></tr>'}</table></div>
+ <div class="f" style="margin:10px 0"><div class="full"><label>Customer</label><select onchange="pos.cid=this.value"><option value="">Walk-in customer</option>${db.customers.map(c=>`<option value="${c.id}" ${pos.cid==c.id?'selected':''}>${esc(c.name)} – ${esc(c.village)}</option>`)}</select></div>
+ <div><label>Discount % ${user==='Cashier'?'(max 5)':''}</label><input type="number" min="0" value="${pos.disc}" onchange="pos.disc=Math.max(0,Math.min(user==='Cashier'?5:100,+this.value||0));cartR()"></div>
+ <div><label>Payment</label><select onchange="pos.mode=this.value">${['Cash','UPI','Card','Credit'].map(m=>`<option ${pos.mode===m?'selected':''}>${m}</option>`)}</select></div>
+ <div class="full"><label>Amount received (blank = full; less = partial credit)</label><input type="number" min="0" value="${pos.paid}" onchange="pos.paid=this.value"></div></div>
+ <div class="row"><span>Subtotal</span><span>${fmt(t.sub)}</span></div><div class="row"><span>Discount</span><span>−${fmt(t.d)}</span></div><div class="row"><span>GST</span><span>${fmt(t.tax)}</span></div><div class="row t"><span>Total</span><span>${fmt(t.total)}</span></div>
+ <button class="btn" style="width:100%;margin-top:10px" onclick="checkout()" ${cart.length?'':'disabled'}>Complete sale</button>`}
+function checkout(){try{const paid=pos.mode==='Credit'?0:pos.paid;const s=makeSale({lines:cart,cid:pos.cid,disc:pos.disc,mode:pos.mode,paid});cart=[];pos={q:'',cid:'',disc:0,mode:'Cash',paid:''};toast('Sale saved: '+s.no);posPage();invoiceView(s.no)}catch(e){toast(e.message)}}
+/* ---------- products ---------- */
+function products(q=''){
+ $('#pg').innerHTML=`<h1>Products</h1><p class="sub">Product master with GST, HSN and minimum stock.</p><div class="bar"><input id="pq" placeholder="Search products" value="${esc(q)}" oninput="prodRows()"><select id="pc" onchange="prodRows()"><option value="">All categories</option>${[...new Set(db.products.map(p=>p.cat))].map(c=>`<option>${c}</option>`)}</select><span class="sp" style="flex:1"></span><button class="btn o" onclick="exportCSV()">Export CSV</button><button class="btn" onclick="prodForm()">Add product</button></div><div class="card tw"><table><thead><tr><th>Product</th><th>SKU</th><th>Category</th><th>Brand</th><th>Cost</th><th>Price</th><th>GST</th><th>HSN</th><th>Stock</th><th>Status</th><th></th></tr></thead><tbody id="pb"></tbody></table></div>`;prodRows()}
+function prodRows(){const q=$('#pq').value.toLowerCase(),c=$('#pc').value;$('#pb').innerHTML=db.products.filter(p=>(p.name+p.sku+p.brand).toLowerCase().includes(q)&&(!c||p.cat===c)).map(p=>{const s=db.batches.filter(b=>b.pid===p.id).reduce((a,b)=>a+b.qty,0);return `<tr><td>${esc(p.name)} ${p.demo?'<span class="tag w">DEMO</span>':''}</td><td>${p.sku}</td><td>${p.cat}</td><td>${esc(p.brand)}</td><td>${fmt(p.cost)}</td><td>${fmt(p.price)}</td><td>${p.gst}%</td><td>${p.hsn}</td><td><span class="tag ${s<=p.min?'w':''}">${s} ${p.unit.split(' ').pop()}</span></td><td>${p.active?'Active':'Inactive'}</td><td><button class="btn o s" onclick="prodForm(${p.id})">Edit</button> <button class="btn o s" onclick="togP(${p.id})">${p.active?'Disable':'Enable'}</button></td></tr>`}).join('')}
+function togP(id){const p=pOf(id);p.active=!p.active;save();prodRows()}
+function prodForm(id){const p=id?pOf(id):{name:'',sku:'KM-'+(1001+db.pid),cat:'Insecticide',brand:'',unit:'1 L',cost:'',price:'',gst:18,hsn:'',min:10};
+ const F=(k,l,t='text')=>`<div><label>${l}</label><input id="f_${k}" type="${t}" value="${esc(p[k])}"></div>`;
+ modal(`<h1>${id?'Edit':'Add'} product</h1><div class="f">${F('name','Product name')}${F('sku','SKU')}${F('cat','Category')}${F('brand','Brand')}${F('unit','Unit (e.g. 1 L)')}${F('hsn','HSN code')}${F('cost','Purchase price','number')}${F('price','Selling price (excl. GST)','number')}${F('gst','GST %','number')}${F('min','Minimum stock','number')}</div><p style="margin-top:14px"><button class="btn" onclick="saveP(${id||0})">Save product</button> <button class="btn o" onclick="closeM()">Cancel</button></p>`)}
+function saveP(id){const g=k=>$('#f_'+k).value.trim(),v={name:g('name'),sku:g('sku'),cat:g('cat'),brand:g('brand'),unit:g('unit'),hsn:g('hsn'),cost:+g('cost'),price:+g('price'),gst:+g('gst'),min:+g('min')};
+ if(!v.name||!v.price||v.price<0||v.cost<0)return toast('Name and a valid price are required');
+ if(db.products.some(p=>p.sku===v.sku&&p.id!==id))return toast('SKU already exists');
+ if(id)Object.assign(pOf(id),v);else db.products.push({id:++db.pid,active:true,...v});save();closeM();products();toast('Product saved')}
+function exportCSV(){const r=[['SKU','Name','Category','Brand','Cost','Price','GST','HSN','Stock']].concat(db.products.map(p=>[p.sku,p.name,p.cat,p.brand,p.cost,p.price,p.gst,p.hsn,stock(p.id)]));
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([r.map(x=>x.map(c=>'"'+c+'"').join(',')).join('\n')],{type:'text/csv'}));a.download='products.csv';a.click()}
+/* ---------- inventory ---------- */
+function inventory(){
+ const st=b=>b.blocked?['Blocked','b']:b.exp<TODAY?['Expired','b']:b.exp<=addD(TODAY,60)?['Near expiry','w']:['OK',''];
+ $('#pg').innerHTML=`<h1>Inventory & batches</h1><p class="sub">Expired and blocked batches can’t be sold. Every change is logged below.</p><div class="bar"><button class="btn" onclick="recvForm()">Receive stock</button></div>
+ <div class="card tw"><table><thead><tr><th>Product</th><th>Batch</th><th>Expiry</th><th>Qty</th><th>Cost</th><th>Status</th><th></th></tr></thead><tbody>${[...db.batches].sort((a,b)=>a.exp<b.exp?-1:1).map(b=>{const s=st(b);return `<tr><td>${esc(pOf(b.pid).name)}</td><td>${b.no}</td><td>${b.exp}</td><td>${b.qty}</td><td>${fmt(b.cost)}</td><td><span class="tag ${s[1]}">${s[0]}</span></td><td><button class="btn o s" onclick="adjF(${b.id})">Adjust</button> <button class="btn o s" onclick="blk(${b.id})">${b.blocked?'Unblock':'Block / recall'}</button></td></tr>`}).join('')}</tbody></table></div>
+ <div class="card tw" style="margin-top:14px"><b>Recent stock movements</b><table><thead><tr><th>Date</th><th>Product</th><th>Type</th><th>Qty</th><th>Ref</th></tr></thead><tbody>${db.txns.slice(-12).reverse().map(t=>`<tr><td>${t.date}</td><td>${esc(pOf(t.pid).name)}</td><td>${t.type}</td><td>${t.qty}</td><td>${t.ref}</td></tr>`).join('')}</tbody></table></div>`}
+function blk(id){const b=db.batches.find(x=>x.id===id);b.blocked=!b.blocked;db.txns.push({date:TODAY,pid:b.pid,bid:id,type:b.blocked?'Blocked':'Unblocked',qty:0,ref:user});save();inventory()}
+function recvForm(){modal(`<h1>Receive stock</h1><div class="f"><div class="full"><label>Product</label><select id="r_p">${db.products.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`)}</select></div><div><label>Batch number</label><input id="r_n"></div><div><label>Expiry date</label><input id="r_e" type="date"></div><div><label>Quantity</label><input id="r_q" type="number" min="1"></div><div><label>Purchase cost per unit</label><input id="r_c" type="number" min="0"></div></div><p style="margin-top:14px"><button class="btn" onclick="recv()">Add to stock</button> <button class="btn o" onclick="closeM()">Cancel</button></p>`)}
+function recv(){const pid=+$('#r_p').value,no=$('#r_n').value.trim(),exp=$('#r_e').value,qty=+$('#r_q').value,cost=+$('#r_c').value;
+ if(!no||!exp||qty<1||cost<=0)return toast('Fill batch, expiry, quantity and cost');if(exp<=TODAY)return toast('Expiry must be in the future');
+ const b={id:++db.bid,pid,no,exp,qty,cost,blocked:false};db.batches.push(b);pOf(pid).cost=cost;db.txns.push({date:TODAY,pid,bid:b.id,type:'Purchase inward',qty,ref:no});save();closeM();inventory();toast('Stock added')}
+function adjF(id){const b=db.batches.find(x=>x.id===id);modal(`<h1>Adjust ${b.no}</h1><div class="f"><div><label>New quantity</label><input id="a_q" type="number" min="0" value="${b.qty}"></div><div><label>Reason (damage, count correction…)</label><input id="a_r"></div></div><p style="margin-top:14px"><button class="btn" onclick="adj(${id})">Save adjustment</button></p>`)}
+function adj(id){const b=db.batches.find(x=>x.id===id),n=+$('#a_q').value,r=$('#a_r').value.trim();if(n<0||!r)return toast('Enter a quantity and a reason');db.txns.push({date:TODAY,pid:b.pid,bid:id,type:'Adjustment: '+r,qty:n-b.qty,ref:user});b.qty=n;save();closeM();inventory()}
+/* ---------- customers ---------- */
+function customers(){
+ $('#pg').innerHTML=`<h1>Customers</h1><p class="sub">Farmer ledger with credit limits and payment receipts.</p><div class="bar"><button class="btn" onclick="custForm()">Add customer</button></div><div class="card tw"><table><thead><tr><th>Name</th><th>Mobile</th><th>Village</th><th>Credit limit</th><th>Outstanding</th><th></th></tr></thead><tbody>${db.customers.map(c=>{const o=owes(c.id);return `<tr><td>${esc(c.name)} ${c.demo?'<span class="tag w">DEMO</span>':''}</td><td>${esc(c.mobile)}</td><td>${esc(c.village)}</td><td>${fmt(c.limit)}</td><td><span class="tag ${o>0?'w':''}">${fmt(o)}</span></td><td><button class="btn o s" onclick="ledger(${c.id})">Ledger</button> <button class="btn s" onclick="payF(${c.id})" ${o>0?'':'disabled'}>Receive payment</button></td></tr>`}).join('')}</tbody></table></div>`}
+function custForm(){modal(`<h1>Add customer</h1><div class="f"><div><label>Name</label><input id="c_n"></div><div><label>Mobile</label><input id="c_m"></div><div><label>Village</label><input id="c_v"></div><div><label>Credit limit</label><input id="c_l" type="number" value="10000"></div></div><p style="margin-top:14px"><button class="btn" onclick="saveC()">Save customer</button></p>`)}
+function saveC(){const n=$('#c_n').value.trim(),m=$('#c_m').value.trim();if(!n||!/^[\d\s+]{10,14}$/.test(m))return toast('Enter a name and a valid mobile number');db.customers.push({id:++db.cid,name:n,mobile:m,village:$('#c_v').value,limit:+$('#c_l').value||0,type:'Farmer'});save();closeM();customers()}
+function payF(id){modal(`<h1>Receive payment from ${esc(cOf(id).name)}</h1><p>Outstanding: <b>${fmt(owes(id))}</b></p><div class="f"><div><label>Amount</label><input id="p_a" type="number" min="1" max="${owes(id)}"></div><div><label>Mode</label><select id="p_m"><option>Cash</option><option>UPI</option><option>Bank transfer</option></select></div></div><p style="margin-top:14px"><button class="btn" onclick="pay(${id})">Record payment</button></p>`)}
+function pay(id){const a=+$('#p_a').value;if(!(a>0)||a>owes(id))return toast('Enter an amount up to the outstanding balance');db.ledger.push({cid:id,date:TODAY,ref:'RCT-'+(db.ledger.length+1),note:'Payment received ('+$('#p_m').value+')',dr:0,cr:a});save();closeM();customers();toast('Payment recorded')}
+function ledger(id){let bal=0;modal(`<h1>${esc(cOf(id).name)} – ledger</h1><div class="tw"><table><thead><tr><th>Date</th><th>Ref</th><th>Note</th><th>Debit</th><th>Credit</th><th>Balance</th></tr></thead><tbody>${db.ledger.filter(l=>l.cid==id).map(l=>{bal+=l.dr-l.cr;return `<tr><td>${l.date}</td><td>${l.ref}</td><td>${l.note}</td><td>${l.dr?fmt(l.dr):''}</td><td>${l.cr?fmt(l.cr):''}</td><td>${fmt(bal)}</td></tr>`}).join('')||'<tr><td>No entries yet.</td></tr>'}</tbody></table></div><p><button class="btn o" onclick="closeM()">Close</button></p>`)}
+/* ---------- invoices ---------- */
+function invoices(q=''){
+ $('#pg').innerHTML=`<h1>Invoices</h1><p class="sub">Search by invoice number or customer.</p><div class="bar"><input id="iq" placeholder="Search invoices" value="${esc(q)}" oninput="invoices(this.value)"></div><div class="card tw"><table><thead><tr><th>Invoice</th><th>Date</th><th>Customer</th><th>Total</th><th>Paid</th><th>Due</th><th>Mode</th><th></th></tr></thead><tbody>${[...db.sales].reverse().filter(s=>(s.no+(cOf(s.cid)?.name||'walk-in')).toLowerCase().includes(q.toLowerCase())).slice(0,60).map(s=>`<tr><td>${s.no} ${s.demo?'<span class="tag w">DEMO</span>':''}</td><td>${s.date}</td><td>${esc(cOf(s.cid)?.name||'Walk-in')}</td><td>${fmt(s.total)}</td><td>${fmt(s.paid)}</td><td>${s.total-s.paid?`<span class="tag w">${fmt(s.total-s.paid)}</span>`:'–'}</td><td>${s.mode}</td><td><button class="btn o s" onclick="invoiceView('${s.no}')">View / print</button></td></tr>`).join('')}</tbody></table></div>`;
+ if(q){const e=$('#iq');e.focus();e.setSelectionRange(q.length,q.length)}}
+function invoiceView(no){const s=db.sales.find(x=>x.no===no),c=cOf(s.cid);
+ modal(`<div style="text-align:center"><b style="font-size:18px">KrishiMart Agro Centre</b><br><small>Main Road, Salem, Tamil Nadu · GSTIN: 33XXXXX0000X1Z5 (set in settings)</small><br><b>Tax invoice</b></div>
+ <div class="row"><span>${s.no}</span><span>${s.date}</span></div><div>Customer: ${esc(c?c.name+', '+c.village:'Walk-in customer')}</div>
+ <div class="tw"><table><thead><tr><th>Item</th><th>HSN</th><th>Batch</th><th>Qty</th><th>Rate</th><th>GST</th><th>Amount</th></tr></thead><tbody>${s.items.map(i=>`<tr><td>${esc(i.name)}</td><td>${i.hsn}</td><td>${i.batch}</td><td>${i.qty}</td><td>${fmt(i.rate)}</td><td>${i.gst}%</td><td>${fmt(i.qty*i.rate)}</td></tr>`).join('')}</tbody></table></div>
+ <div class="row"><span>Subtotal</span><span>${fmt(s.sub)}</span></div><div class="row"><span>Discount (${s.disc}%)</span><span>−${fmt(s.dAmt)}</span></div><div class="row"><span>Taxable value</span><span>${fmt(s.taxable)}</span></div><div class="row"><span>CGST + SGST</span><span>${fmt(s.tax/2)} + ${fmt(s.tax/2)}</span></div><div class="row t"><span>Grand total</span><span>${fmt(s.total)}</span></div>
+ <div class="row"><span>Paid (${s.mode})</span><span>${fmt(s.paid)}</span></div><div class="row"><span>Outstanding</span><span>${fmt(s.total-s.paid)}</span></div>
+ <p class="np" style="margin-top:14px"><button class="btn" onclick="window.print()">Print / save as PDF</button> <button class="btn o" onclick="closeM()">Close</button></p>`)}
+load();render();
+</script></body></html>
