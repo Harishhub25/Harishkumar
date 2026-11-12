@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>KrishiMart – Agriculture Shop Manager</title>
+<title>HK Mart | Agriculture Store Management</title>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f3f5f2;--card:#fff;--ink:#1c2a1f;--mut:#69776c;--line:#e1e7e0;--pri:#1f4d2b;--pri2:#2d6a3e;--acc:#6bbf59;--accbg:#e6f4e1;--warn:#b7791f;--warnbg:#fdf3dc;--bad:#b42318;--badbg:#fde8e6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -56,10 +56,125 @@ td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}tr:la
 @media(max-width:860px){aside{position:fixed;left:-240px;z-index:15;transition:left .2s}aside.open{left:0}.menu{display:inline-block}.pos{grid-template-columns:1fr}.wrap{padding:14px}}
 @media print{body *{visibility:hidden}.mb,.mb *{visibility:visible}#m{position:static;background:none}.mb{position:absolute;left:0;top:0;max-width:none;box-shadow:none}.np{display:none!important}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---------- HK Mart visual refresh ---------- */
+:root{
+ --bg:#f4f7f3;--card:#ffffff;--ink:#17271d;--mut:#718076;--line:#e4ebe4;
+ --pri:#174c32;--pri2:#216b43;--acc:#8bcf62;--accbg:#edf8e7;
+ --shadow:0 10px 30px rgba(22,55,35,.06);--shadow-hover:0 16px 36px rgba(22,55,35,.11);
+ --radius:16px;
+}
+body{font-family:"Figtree",Inter,system-ui,sans-serif;letter-spacing:-.01em;background:
+ radial-gradient(ellipse at 85% 0%,rgba(139,207,98,.09),transparent 32%),var(--bg)}
+.app{min-height:100vh}
+aside{
+ width:252px;padding:22px 14px;background:linear-gradient(180deg,#123d2b 0%,#174c32 55%,#1c5b39 100%);
+ box-shadow:8px 0 28px rgba(15,52,32,.08)
+}
+aside .brand{padding:4px 10px 26px;font-size:19px;letter-spacing:-.04em}
+.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(145deg,#b8ed8b,#78c64f);
+ box-shadow:0 6px 16px rgba(139,207,98,.22);font-size:20px}
+aside a{padding:12px 14px;border-radius:11px;margin:4px 0;color:#d9eadf;font-weight:500;transition:background .18s,transform .18s}
+aside a:hover{background:rgba(255,255,255,.11);transform:translateX(2px)}
+aside a.on{background:#f5fbf4;color:#174c32;box-shadow:0 5px 16px rgba(0,0,0,.09);font-weight:700}
+main{background:transparent}
+.top{padding:14px 28px;min-height:70px;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);
+ border-bottom:1px solid rgba(220,231,220,.8);box-shadow:0 3px 14px rgba(25,58,36,.025)}
+.top input{max-width:460px;padding:11px 14px;border-radius:12px;background:#f7faf6}
+.top input:focus,.bar input:focus,.bar select:focus,.f input:focus,.f select:focus{
+ outline:none;border-color:#7fbd69;box-shadow:0 0 0 3px rgba(139,207,98,.17)}
+.wrap{padding:30px;max-width:1500px}
+h1{font-size:27px;letter-spacing:-.045em;font-weight:700;color:var(--ink);margin-bottom:6px}
+.sub{font-size:13.5px;color:var(--mut);margin-bottom:22px}
+.grid{gap:16px;grid-template-columns:repeat(auto-fit,minmax(205px,1fr))}
+.g2{gap:16px;margin-top:18px}
+.card{border:1px solid rgba(222,232,222,.9);border-radius:var(--radius);padding:19px;background:var(--card);
+ box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s}
+.card:hover{box-shadow:var(--shadow-hover)}
+.kpi{position:relative;overflow:hidden;min-height:112px}
+.kpi:after{content:"";position:absolute;width:86px;height:86px;border-radius:50%;right:-28px;top:-30px;background:rgba(139,207,98,.10)}
+.kpi b{font-size:25px;letter-spacing:-.04em;margin-top:10px}
+.kpi span{font-size:12.5px;font-weight:600;letter-spacing:.01em}
+.kpi.g{border-left:4px solid #71bd55}
+.kpi.w{border-left:4px solid #e2a43c}
+.kpi.b{border-left:4px solid #d9655e}
+.btn{padding:10px 16px;border-radius:11px;background:linear-gradient(135deg,#174c32,#267044);
+ box-shadow:0 5px 12px rgba(23,76,50,.13);transition:transform .16s,box-shadow .16s,filter .16s}
+.btn:hover{background:linear-gradient(135deg,#216b43,#31834f);transform:translateY(-1px);box-shadow:0 8px 18px rgba(23,76,50,.18)}
+.btn:active{transform:translateY(0)}
+.btn.o{background:#fff;color:#245b3a;border:1px solid #dce8dc;box-shadow:none}
+.btn.o:hover{background:#f2f8ef;border-color:#b8d7ad}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.tag{padding:4px 10px;border-radius:99px;font-size:11.5px;letter-spacing:.01em}
+table{border-spacing:0}
+th{padding:13px 12px;background:#f7faf6;color:#748176;font-size:11.5px;text-transform:uppercase;letter-spacing:.055em}
+td{padding:13px 12px;font-size:13px}
+tbody tr{transition:background .15s}
+tbody tr:hover{background:#f8fbf7}
+.bar{gap:12px;margin-bottom:18px}
+.bar input,.bar select,.f input,.f select{padding:11px 13px;border-radius:11px;background:#fff}
+.pos{grid-template-columns:minmax(0,1fr) 400px;gap:16px}
+.items{gap:12px;max-height:66vh}
+.it{padding:14px;border-radius:13px;transition:border-color .16s,transform .16s,box-shadow .16s}
+.it:hover{border-color:#8bcf62;transform:translateY(-2px);box-shadow:0 8px 18px rgba(30,75,43,.08)}
+.it b{font-size:13.5px;line-height:1.4;margin-bottom:5px}
+.q{border:1px solid var(--line);border-radius:8px;min-height:32px}
+.mb{border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 80px rgba(8,30,16,.24);padding:26px}
+#m{backdrop-filter:blur(5px);background:rgba(8,25,14,.52)}
+.f{gap:13px}
+.f label{font-weight:600;margin-bottom:5px}
+.login{background:
+ radial-gradient(circle at 15% 20%,rgba(139,207,98,.22),transparent 28%),
+ radial-gradient(circle at 90% 80%,rgba(255,255,255,.10),transparent 30%),
+ linear-gradient(135deg,#103b29,#1c6340 58%,#17462f)}
+.login .card{max-width:420px;padding:34px;border:1px solid rgba(255,255,255,.5);border-radius:22px;
+ box-shadow:0 28px 80px rgba(0,0,0,.22)}
+.login .brand{font-size:25px!important;letter-spacing:-.05em}
+.login .logo{width:48px;height:48px;border-radius:15px}
+.login .sub{margin-bottom:20px}
+.login button{margin-top:16px;padding:12px}
+.demo{margin:14px 28px 0;padding:9px 14px;border:1px solid #f0dfb6;border-radius:11px;
+ background:#fff8e8;color:#8b641b;font-size:12px}
+#toast{border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:12px 18px}
+.hb{gap:10px;margin:9px 0}
+.hb span{width:125px;font-weight:600;font-size:12px}
+.hb i{background:linear-gradient(90deg,#75bf55,#a5dc79)}
+.pill{padding:6px 12px}
+@media(max-width:860px){
+ aside{width:252px;left:-265px}
+ aside.open{left:0}
+ .top{padding:12px 14px}
+ .top input{min-width:0}
+ .wrap{padding:18px 14px}
+ .demo{margin:10px 14px 0}
+ .pos{grid-template-columns:1fr}
+ .items{max-height:48vh}
+}
+@media(max-width:520px){
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .card{padding:14px;border-radius:13px}
+ .kpi b{font-size:20px}
+ .kpi{min-height:100px}
+ .g2{grid-template-columns:1fr}
+ .top .pill{display:none}
+ .f{grid-template-columns:1fr}
+ .f .full{grid-column:auto}
+ h1{font-size:23px}
+}
+@media(prefers-color-scheme:dark){
+ :root:not([data-theme="light"]){--bg:#101a14;--card:#18251c;--ink:#e7f0e8;--mut:#a0b0a3;--line:#2b3b30;--pri:#286c43;--pri2:#3d8b56;--accbg:#243b29;--shadow:0 10px 30px rgba(0,0,0,.15)}
+ :root:not([data-theme="light"]) .top{background:rgba(24,37,28,.9)}
+ :root:not([data-theme="light"]) th{background:#1d2b21}
+ :root:not([data-theme="light"]) tbody tr:hover{background:#1d2b21}
+ :root:not([data-theme="light"]) .btn.o{background:transparent;color:#b7e0aa;border-color:#3a5140}
+ :root:not([data-theme="light"]) .bar input,:root:not([data-theme="light"]) .bar select,
+ :root:not([data-theme="light"]) .f input,:root:not([data-theme="light"]) .f select{background:#1a291f}
+}
+
 </style></head><body>
 <div id="root"></div><div id="m"><div class="mb" id="mb"></div></div><div id="toast"></div>
 <script>
-const $=s=>document.querySelector(s),TODAY=new Date().toISOString().slice(0,10),KEY='krishimart_v1';
+const $=s=>document.querySelector(s),TODAY=new Date().toISOString().slice(0,10),KEY='HK Mart_v1';
 const fmt=n=>'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2});
 const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -91,7 +206,7 @@ Knapsack Sprayer 16 L|Equipment|Neptune|1 pc|1450|1850|18|8424|4
 Seaweed Growth Promoter|Promoter|Dhanuka|500 ml|240|330|18|3808|10`.split('\n');
  db={products:[],batches:[],customers:[],sales:[],ledger:[],txns:[],seq:0,pid:0,bid:0,cid:0};
  P.forEach((r,i)=>{const [name,cat,brand,unit,cost,price,gst,hsn,min]=r.split('|');const id=++db.pid;
-  db.products.push({id,name,sku:'KM-'+String(1000+id),cat,brand,unit,cost:+cost,price:+price,gst:+gst,hsn,min:+min,active:true,demo:true});
+  db.products.push({id,name,sku:'HKM-'+String(1000+id),cat,brand,unit,cost:+cost,price:+price,gst:+gst,hsn,min:+min,active:true,demo:true});
   const nr=cat==='Equipment'||cat==='Fertilizer';
   const exp=i===3?addD(TODAY,-20):i===1?addD(TODAY,35):i===5?addD(TODAY,50):addD(TODAY,nr?700:300+i*20);
   const qty=i===4?6:i===8?9:60+i*3;
@@ -131,11 +246,11 @@ function makeSale({lines,cid,disc,mode,paid,date,demo}){
  }catch(e){db=JSON.parse(snap);throw e}}
 /* ---------- shell ---------- */
 function render(){
- if(!user){$('#root').innerHTML=`<div class="login"><div class="card"><div class="brand" style="display:flex;gap:10px;align-items:center;font-weight:700;font-size:20px;margin-bottom:6px"><div class="logo">🌿</div>KrishiMart</div>
+ if(!user){$('#root').innerHTML=`<div class="login"><div class="card"><div class="brand" style="display:flex;gap:10px;align-items:center;font-weight:700;font-size:20px;margin-bottom:6px"><div class="logo">🌿</div><span>HK Mart</span></div>
  <p class="sub">Sign in to manage billing, stock and customers.</p><div class="f"><div class="full"><label>Role</label><select id="lr">${Object.keys(ROLES).map(r=>`<option>${r}</option>`)}</select></div><div class="full"><label>Password</label><input id="lp" type="password" value="demo"></div></div>
  <button class="btn" onclick="login()">Sign in</button><p class="sub" style="margin-top:12px;font-size:12.5px">Demo build: any role, password “demo”.</p></div></div>`;return}
  const allowed=ROLES[user];if(!allowed.includes(page))page=allowed[0];
- $('#root').innerHTML=`<div class="app"><aside id="sb"><div class="brand"><div class="logo">🌿</div>KrishiMart</div>${allowed.map(k=>`<a class="${k===page?'on':''}" onclick="go('${k}')">${NAV[k][0]} ${NAV[k][1]}</a>`).join('')}</aside>
+ $('#root').innerHTML=`<div class="app"><aside id="sb"><div class="brand"><div class="logo">🌿</div><span>HK Mart</span></div>${allowed.map(k=>`<a class="${k===page?'on':''}" onclick="go('${k}')">${NAV[k][0]} ${NAV[k][1]}</a>`).join('')}</aside>
  <main><div class="top"><button class="btn o s menu" onclick="$('#sb').classList.toggle('open')">☰</button><input id="gs" placeholder="Search products or invoices…" onkeydown="if(event.key==='Enter')gsearch(this.value)"><span class="sp"></span><span class="pill">${esc(user)}</span><button class="btn o s" onclick="document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark'">Theme</button><button class="btn o s" onclick="user=null;render()">Log out</button></div>
  <div class="demo">Demo records are labelled DEMO. Data is stored in this browser only.</div><div class="wrap" id="pg"></div></main></div>`;
  ({dashboard,pos:posPage,products,inventory,customers,invoices})[page]();}
@@ -179,7 +294,7 @@ function products(q=''){
  $('#pg').innerHTML=`<h1>Products</h1><p class="sub">Product master with GST, HSN and minimum stock.</p><div class="bar"><input id="pq" placeholder="Search products" value="${esc(q)}" oninput="prodRows()"><select id="pc" onchange="prodRows()"><option value="">All categories</option>${[...new Set(db.products.map(p=>p.cat))].map(c=>`<option>${c}</option>`)}</select><span class="sp" style="flex:1"></span><button class="btn o" onclick="exportCSV()">Export CSV</button><button class="btn" onclick="prodForm()">Add product</button></div><div class="card tw"><table><thead><tr><th>Product</th><th>SKU</th><th>Category</th><th>Brand</th><th>Cost</th><th>Price</th><th>GST</th><th>HSN</th><th>Stock</th><th>Status</th><th></th></tr></thead><tbody id="pb"></tbody></table></div>`;prodRows()}
 function prodRows(){const q=$('#pq').value.toLowerCase(),c=$('#pc').value;$('#pb').innerHTML=db.products.filter(p=>(p.name+p.sku+p.brand).toLowerCase().includes(q)&&(!c||p.cat===c)).map(p=>{const s=db.batches.filter(b=>b.pid===p.id).reduce((a,b)=>a+b.qty,0);return `<tr><td>${esc(p.name)} ${p.demo?'<span class="tag w">DEMO</span>':''}</td><td>${p.sku}</td><td>${p.cat}</td><td>${esc(p.brand)}</td><td>${fmt(p.cost)}</td><td>${fmt(p.price)}</td><td>${p.gst}%</td><td>${p.hsn}</td><td><span class="tag ${s<=p.min?'w':''}">${s} ${p.unit.split(' ').pop()}</span></td><td>${p.active?'Active':'Inactive'}</td><td><button class="btn o s" onclick="prodForm(${p.id})">Edit</button> <button class="btn o s" onclick="togP(${p.id})">${p.active?'Disable':'Enable'}</button></td></tr>`}).join('')}
 function togP(id){const p=pOf(id);p.active=!p.active;save();prodRows()}
-function prodForm(id){const p=id?pOf(id):{name:'',sku:'KM-'+(1001+db.pid),cat:'Insecticide',brand:'',unit:'1 L',cost:'',price:'',gst:18,hsn:'',min:10};
+function prodForm(id){const p=id?pOf(id):{name:'',sku:'HKM-'+(1001+db.pid),cat:'Insecticide',brand:'',unit:'1 L',cost:'',price:'',gst:18,hsn:'',min:10};
  const F=(k,l,t='text')=>`<div><label>${l}</label><input id="f_${k}" type="${t}" value="${esc(p[k])}"></div>`;
  modal(`<h1>${id?'Edit':'Add'} product</h1><div class="f">${F('name','Product name')}${F('sku','SKU')}${F('cat','Category')}${F('brand','Brand')}${F('unit','Unit (e.g. 1 L)')}${F('hsn','HSN code')}${F('cost','Purchase price','number')}${F('price','Selling price (excl. GST)','number')}${F('gst','GST %','number')}${F('min','Minimum stock','number')}</div><p style="margin-top:14px"><button class="btn" onclick="saveP(${id||0})">Save product</button> <button class="btn o" onclick="closeM()">Cancel</button></p>`)}
 function saveP(id){const g=k=>$('#f_'+k).value.trim(),v={name:g('name'),sku:g('sku'),cat:g('cat'),brand:g('brand'),unit:g('unit'),hsn:g('hsn'),cost:+g('cost'),price:+g('price'),gst:+g('gst'),min:+g('min')};
@@ -214,7 +329,7 @@ function invoices(q=''){
  $('#pg').innerHTML=`<h1>Invoices</h1><p class="sub">Search by invoice number or customer.</p><div class="bar"><input id="iq" placeholder="Search invoices" value="${esc(q)}" oninput="invoices(this.value)"></div><div class="card tw"><table><thead><tr><th>Invoice</th><th>Date</th><th>Customer</th><th>Total</th><th>Paid</th><th>Due</th><th>Mode</th><th></th></tr></thead><tbody>${[...db.sales].reverse().filter(s=>(s.no+(cOf(s.cid)?.name||'walk-in')).toLowerCase().includes(q.toLowerCase())).slice(0,60).map(s=>`<tr><td>${s.no} ${s.demo?'<span class="tag w">DEMO</span>':''}</td><td>${s.date}</td><td>${esc(cOf(s.cid)?.name||'Walk-in')}</td><td>${fmt(s.total)}</td><td>${fmt(s.paid)}</td><td>${s.total-s.paid?`<span class="tag w">${fmt(s.total-s.paid)}</span>`:'–'}</td><td>${s.mode}</td><td><button class="btn o s" onclick="invoiceView('${s.no}')">View / print</button></td></tr>`).join('')}</tbody></table></div>`;
  if(q){const e=$('#iq');e.focus();e.setSelectionRange(q.length,q.length)}}
 function invoiceView(no){const s=db.sales.find(x=>x.no===no),c=cOf(s.cid);
- modal(`<div style="text-align:center"><b style="font-size:18px">KrishiMart Agro Centre</b><br><small>Main Road, Salem, Tamil Nadu · GSTIN: 33XXXXX0000X1Z5 (set in settings)</small><br><b>Tax invoice</b></div>
+ modal(`<div style="text-align:center"><b style="font-size:18px">HK Mart Agriculture Store</b><br><small>Main Road, Salem, Tamil Nadu · GSTIN: 33XXXXX0000X1Z5 (set in settings)</small><br><b>Tax invoice</b></div>
  <div class="row"><span>${s.no}</span><span>${s.date}</span></div><div>Customer: ${esc(c?c.name+', '+c.village:'Walk-in customer')}</div>
  <div class="tw"><table><thead><tr><th>Item</th><th>HSN</th><th>Batch</th><th>Qty</th><th>Rate</th><th>GST</th><th>Amount</th></tr></thead><tbody>${s.items.map(i=>`<tr><td>${esc(i.name)}</td><td>${i.hsn}</td><td>${i.batch}</td><td>${i.qty}</td><td>${fmt(i.rate)}</td><td>${i.gst}%</td><td>${fmt(i.qty*i.rate)}</td></tr>`).join('')}</tbody></table></div>
  <div class="row"><span>Subtotal</span><span>${fmt(s.sub)}</span></div><div class="row"><span>Discount (${s.disc}%)</span><span>−${fmt(s.dAmt)}</span></div><div class="row"><span>Taxable value</span><span>${fmt(s.taxable)}</span></div><div class="row"><span>CGST + SGST</span><span>${fmt(s.tax/2)} + ${fmt(s.tax/2)}</span></div><div class="row t"><span>Grand total</span><span>${fmt(s.total)}</span></div>
